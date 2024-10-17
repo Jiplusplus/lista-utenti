@@ -1,0 +1,27 @@
+<div class="container">
+
+    <div class="row">
+
+        <div class="col">
+
+            <form #form1 id="form1" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label for="txtId" class="form-label">ID</label>
+                    <input #id id="txtId" name="txtId" type="text" class="form-control" required [(ngModel)]="this.current.id">
+                </div>
+                <div class="mb-3">
+                    <label for="txtUsername" class="form-label">Username</label>
+                    <input #username id="txtUsername" name="txtUsername" type="text" class="form-control" required [(ngModel)]="this.current.username">
+                </div>
+                <div class="mb-3">
+                    <label for="txtPassword" class="form-label">Password</label>
+                    <input #password id="txtPassword" name="txtPassword" type="password" class="form-control" required [(ngModel)]="this.current.password">
+                </div>
+
+                <button type="button" class="btn btn-primary" (click) = "save()">Save</button>
+                <button class="btn btn-warning" >Reset</button>
+
+            </form>
+        </div>
+    </div>
+</div>
