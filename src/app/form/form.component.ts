@@ -30,22 +30,13 @@ export class FormComponent {
 
     if (this.form.nativeElement.checkValidity()) {
 
-      let o = this.service.list.find(e => e.id == this.current.id);
-      if (o) {
-        o.username = this.current.username;
-        o.password = this.current.password;
-      } else {
-        this.service.list.push({
-          id: this.current.id, 
-          username: this.current.username, 
-          password: this.current.password
-        });
-
-        this.service.saveToStorage();
+      console.log(`id=${this.current.id}, check=${this.current.id != ''}`);
+      if(this.current.id != ''){
+        //this.service.update(this.current);
+      }
+      else{
+        this.service.save(this.current);
       }
     }
-
-
   }
-
 }

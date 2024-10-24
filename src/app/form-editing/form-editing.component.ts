@@ -48,7 +48,7 @@ export class FormEditingComponent {
           password: this.current.password
         });
 
-        this.service.saveToStorage();
+        //this.service.saveToStorage();
       }
     }
 
