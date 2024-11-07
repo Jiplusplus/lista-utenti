@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Utente } from '../_models/utente';
 import { UtenteService } from '../_services/utente.service';
+import { Subject, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-lista',
@@ -10,13 +11,14 @@ import { UtenteService } from '../_services/utente.service';
   styleUrl: './lista.component.css'
 })
 export class ListaComponent {
+  refreshListEvent : Subject<any> = new Subject();
   current: Utente = {
     id: '',
     username: '',
     password: ''
   };
   constructor(private service: UtenteService) {
-
+    this.refreshListEvent.next({});
   }
   get list() {
     return this.service.list;
@@ -29,7 +31,9 @@ export class ListaComponent {
     if (idx > -1) {
 
       this.service.list.splice(idx, 1);
+      this.refreshListEvent.next({});
     }
+    
   }
 
   update(item : Utente) {
