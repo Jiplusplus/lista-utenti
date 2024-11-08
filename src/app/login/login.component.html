@@ -1,0 +1,23 @@
+<html>
+    <body>
+        <div class="row">
+
+            <div class="col">
+
+                <form #form1 id="form1" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="txtUsername" class="form-label">Username</label>
+                        <input id="txtUsername" name="txtUsername" type="text" class="form-control" required [(ngModel)]="this.current.username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="txtPassword" class="form-label">Password</label>
+                        <input id="txtPassword" name="txtPassword" type="password" class="form-control" required [(ngModel)]="this.current.password">
+                    </div>
+
+                    <button type="button" class="btn btn-primary" (click) = "login()">Save</button>
+
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
