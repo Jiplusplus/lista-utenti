@@ -44,10 +44,10 @@ export class AuthService {
     });
 
     return this.httpClient.post(url, body, {headers}).pipe(
-
+      
       tap((response:any) => {
         console.log(response);
-        this.token = response.access_token;
+        this.token = response.access_token; 
         this.expToken = new Date(new Date().getTime() + response.expires_in * 1000); 
         this.refreshToken = response.refreshToken;
         this.expRefreshToken = new Date(new Date().getTime() + response.refresh_expires_in * 1000);   
