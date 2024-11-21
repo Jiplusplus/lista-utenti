@@ -22,9 +22,11 @@ export class LoginComponent {
 
   login(){
     console.log(this.current);
+
     this.authService.login(this.current.username, this.current.password).subscribe((response) =>{
-    console.log('ritorno dal service');
-    console.log(response);
+
+      console.log('ritorno dal service');
+      console.log(response);
 
     this.router.navigateByUrl('/');
   });

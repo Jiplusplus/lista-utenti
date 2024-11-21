@@ -18,11 +18,13 @@ export class ListaComponent {
     password: ''
   };
   constructor(private service: UtenteService) {
-    this.refreshListEvent.next({});
+    //this.refreshListEvent.next({});
   }
+
   get list() {
     return this.service.list;
   }
+
   remove(item: Utente) {
 
     console.log(`eliminazione utente ${item.id}`);
@@ -38,10 +40,7 @@ export class ListaComponent {
 
   update(item : Utente) {
 
-    this.current = item;
-
-//    this.current.id = item.id;
-//    this.current.username = item.username;
-//    this.current.password = item.password;
+    this.service.edit(item);
+    
   }
 }

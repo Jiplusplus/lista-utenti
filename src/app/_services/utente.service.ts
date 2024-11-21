@@ -10,18 +10,20 @@ import { AuthService } from '../auth.service';
 export class UtenteService {
 
   refreshListEvent : Subject<any> = new Subject();
+  editEvent: Subject<any> = new Subject();
 
   list: Array<Utente> = [];
 
-  constructor(private httpClient:HttpClient, private service: AuthService) { 
+  constructor(private httpClient:HttpClient, private authService: AuthService) { 
 
     console.log ("provo a chiamare l'api");
 
     let apiURL = "http://localhost:8080/utenti";
 
     this.refreshListEvent.pipe(
+      
       switchMap(response => {
-        let jwt = this.service.token;
+        let jwt = this.authService.token;
         return this.httpClient.get(apiURL, {
           headers:{
             'Authorization':`Bearer ${jwt}`
@@ -39,6 +41,26 @@ export class UtenteService {
 
       this.refreshListEvent.next({});
 
+    }
+
+    edit(obj: Utente){
+      this.editEvent.next(obj);
+    }
+
+    update(obj : Utente){
+      let jwt = this.authService.token;
+      let apiURL: string = `http://localhost:8080/utenti/${obj.id}`;
+
+      this.httpClient.put(apiURL, obj,{
+        headers:{
+          'Authorization': `Bearer ${jwt}`
+            }
+      }).subscribe(response =>{
+
+        console.log(response);
+        console.log('risposta dal server');
+        this.refreshListEvent.next({});
+      })
     }
 
   save(obj: Utente){

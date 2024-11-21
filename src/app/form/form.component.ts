@@ -22,8 +22,16 @@ export class FormComponent {
   };
 
   constructor(private service: UtenteService) {
+    
+    this.service.editEvent.subscribe((e:Utente)=>{
 
+      this.current.id = e.id;
+      this.current.username = e.username;
+      this.current.password = e.password;
+
+    });
   }
+
   save() {
 
     this.form.nativeElement.classList.add('was-validated');
@@ -31,8 +39,8 @@ export class FormComponent {
     if (this.form.nativeElement.checkValidity()) {
 
       console.log(`id=${this.current.id}, check=${this.current.id != ''}`);
-      if(this.current.id != ''){
-        //this.service.update(this.current);
+      if(this.current.id != ''){      
+        this.service.update(this.current);
       }
       else{
         this.service.save(this.current);
